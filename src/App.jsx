@@ -5,24 +5,24 @@ function App() {
   return (
     <div className="App bg-[#0D1323]">
       <div className="h-screen w-full flex justify-center items-center">
-        <div className="flex justify-center">
-          <div className="flex flex-col w-64 bg-[#1D204B] rounded-xl">
-            <div className="flex flex-col bg-[#5746EA] p-8 rounded-xl h-80">
-              <div className="h-24">
+        <div className="flex flex-col 2xl:flex-row justify-center items-center">
+          <div className="flex flex-col w-64 bg-[#1D204B] rounded-xl mb-4">
+            <div className="flex flex-row 2xl:flex-col justify-evenly bg-[#5746EA] p-4 2xl:p-8 rounded-xl 2xl:h-80">
+              <div className="2xl:h-24">
                 <img
-                  className="h-16 border-2 rounded-full"
+                  className="h-12 2xl:h-16 border-2 rounded-full"
                   src={avatar}
                   alt="avatar"
                 />
               </div>
               <div>
                 <h5 className="text-gray-400 text-xs">Report for</h5>
-                <h1 className="text-white text-4xl font-light">
+                <h1 className="text-white text-xl 2xl:text-4xl font-light">
                   Jeremy Robson
                 </h1>
               </div>
             </div>
-            <div className="flex flex-col justify-evenly bg-[#1D204B] h-40 p-5 px-7 text-[#545992] font-semibold rounded-xl">
+            <div className="flex flex-row 2xl:flex-col justify-evenly bg-[#1D204B] 2xl:h-40 p-5 px-7 text-[#545992] font-semibold rounded-xl">
               <p>
                 <span className="hover:text-white">Daily</span>
               </p>
@@ -34,7 +34,8 @@ function App() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-3 grid-rows-2 ml-10 rounded-xl">
+          {/* CARD */}
+          <div className="grid grid-cols-1 2xl:grid-cols-3 2xl:grid-rows-2 2xl:ml-10 rounded-xl">
             <div className="flex flex-col w-64 justify-end bg-[#FF8B64] rounded-t-xl rounded-b-2xl relative">
               <svg
                 className="absolute top-0 right-5 z-0"
@@ -48,7 +49,7 @@ function App() {
                   fill-rule="nonzero"
                 />
               </svg>
-              <div className="flex flex-col h-48 bg-[#1D204B] text-white py-5 px-7 rounded-xl z-10">
+              <div className="flex flex-col 2xl:h-48 bg-[#1D204B] text-white mt-8 py-5 px-7 rounded-xl z-10">
                 <div className="flex justify-between items-center basis-1/4 mb-5">
                   <h4 className="font-semibold">Work</h4>
                   <svg width="21" height="5" xmlns="http://www.w3.org/2000/svg">
@@ -59,9 +60,9 @@ function App() {
                     />
                   </svg>
                 </div>
-                <div className="flex flex-col">
-                  <h1 className="text-5xl mb-3">32hrs</h1>
-                  <p className="text-gray-300">Last Week - 36hrs</p>
+                <div className="flex flex-row 2xl:flex-col justify-between 2xl:justify-start items-center 2xl:items-start">
+                  <h1 className="text-2xl 2xl:text-5xl 2xl:mb-3">32hrs</h1>
+                  <p className="text-sm text-gray-300">Last Week - 36hrs</p>
                 </div>
               </div>
             </div>
