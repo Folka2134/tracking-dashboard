@@ -6,7 +6,34 @@ import "./App.css";
 import avatar from "./assets/image-jeremy.png";
 
 function App() {
-  const [timeFrame, setTimeFrame] = useState("daily");
+  const [timeFrame, setTimeFrame] = useState("monthly");
+
+  console.log(data[0].timeframes.weekly.current);
+
+  function renderCurrent(timeFrame) {
+    switch (timeFrame) {
+      case "daily":
+        return data[0].timeframes.daily.current;
+      case "weekly":
+        return data[0].timeframes.weekly.current;
+      case "monthly":
+        return data[0].timeframes.monthly.current;
+      default:
+        return data[0].timeframes.weekly.current;
+    }
+  }
+  function renderPrevious(timeFrame) {
+    switch (timeFrame) {
+      case "daily":
+        return data[0].timeframes.daily.previous;
+      case "weekly":
+        return data[0].timeframes.weekly.previous;
+      case "monthly":
+        return data[0].timeframes.monthly.previous;
+      default:
+        return data[0].timeframes.weekly.previous;
+    }
+  }
 
   return (
     <div className="App bg-[#0D1323]">
@@ -67,8 +94,12 @@ function App() {
                   </svg>
                 </div>
                 <div className="flex flex-row lg:flex-col justify-between lg:justify-start items-center lg:items-start">
-                  <h1 className="text-xl lg:text-5xl lg:mb-3"></h1>
-                  <p className="text-sm text-gray-300">Last Week - 36hrs</p>
+                  <h1 className="text-xl lg:text-5xl lg:mb-3">
+                    {renderCurrent(timeFrame)}hrs
+                  </h1>
+                  <p className="text-sm text-gray-300">
+                    Last Week - {renderPrevious(timeFrame)}hrs
+                  </p>
                 </div>
               </div>
             </div>
