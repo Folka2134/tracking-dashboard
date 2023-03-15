@@ -1,12 +1,18 @@
+import { useState } from "react";
+
+import data from "./data.json";
+
 import "./App.css";
 import avatar from "./assets/image-jeremy.png";
 
 function App() {
+  const [timeFrame, setTimeFrame] = useState("daily");
+
   return (
     <div className="App bg-[#0D1323]">
       <div className="h-full lg:h-screen w-full flex justify-center items-center">
-        <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center my-24">
-          <div className="flex flex-col w-64 bg-[#1D204B] rounded-xl mb-4">
+        <div className="flex flex-col lg:flex-row lg:justify-center  my-24">
+          <div className="flex flex-col w-64 bg-[#1D204B] rounded-xl mb-4 lg:mb-0">
             <div className="flex flex-row lg:flex-col justify-evenly bg-[#5746EA] p-4 lg:p-8 rounded-xl lg:h-80">
               <div className="lg:h-24">
                 <img
@@ -46,12 +52,12 @@ function App() {
                 <path
                   d="m18.687 10.43 15.464 30.906c.31.682.743 1.322 1.3 1.88.558.557 1.198.99 1.714 1.217L68.237 59.98 52.484 75.732a8.025 8.025 0 0 1-11.355 0L2.934 37.538a8.025 8.025 0 0 1 0-11.356L18.687 10.43Zm19.345-7.99 10.839 10.838 2.065-2.064a5.845 5.845 0 0 1 8.258 0l8.258 8.259a5.845 5.845 0 0 1 0 8.258l-2.064 2.064 10.839 10.84a8.025 8.025 0 0 1 0 11.355l-4.728 4.728L39.126 40.53a1.963 1.963 0 0 1-.578-.413 1.963 1.963 0 0 1-.413-.578L21.95 7.168l4.728-4.728a8.025 8.025 0 0 1 11.355 0Zm17.033 12.903-2.064 2.065 8.258 8.258 2.064-2.064-8.258-8.259Z"
                   fill="#D96C47"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 />
               </svg>
               <div className="flex flex-col lg:h-48 bg-[#1D204B] hover:bg-[#6F76C8] text-white mt-8 py-5 px-7 rounded-xl z-10 cursor-pointer">
                 <div className="flex justify-between items-center basis-1/4 mb-5">
-                  <h4 className="font-semibold">Work</h4>
+                  <h4 className="font-semibold">{data[0].title}</h4>
                   <svg width="21" height="5" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
@@ -61,7 +67,7 @@ function App() {
                   </svg>
                 </div>
                 <div className="flex flex-row lg:flex-col justify-between lg:justify-start items-center lg:items-start">
-                  <h1 className="text-xl lg:text-5xl lg:mb-3">32hrs</h1>
+                  <h1 className="text-xl lg:text-5xl lg:mb-3"></h1>
                   <p className="text-sm text-gray-300">Last Week - 36hrs</p>
                 </div>
               </div>
@@ -108,7 +114,7 @@ function App() {
                 <path
                   d="M33.227 1.495a1.87 1.87 0 0 1 2.646 0l1.323 1.323-27.78 27.78c-2.189 2.189-2.1 5.837.088 8.026l12.132 12.132a5.624 5.624 0 0 0 1.096 6.388 5.624 5.624 0 0 0 6.389 1.097l12.132 12.132c2.188 2.188 5.837 2.276 8.025.088l27.78-27.78 1.323 1.322a1.87 1.87 0 0 1 0 2.646L46.632 78.4a1.87 1.87 0 0 1-2.645 0L29.12 63.531a5.624 5.624 0 0 1-6.389-1.097l-5.291-5.291a5.624 5.624 0 0 1-1.097-6.388L1.478 35.89a1.87 1.87 0 0 1 0-2.646ZM59.74 22.783c1.948.27 3.83 1.117 5.325 2.612l10.583 10.583a1.87 1.87 0 0 1 0 2.646L46.544 67.727a1.87 1.87 0 0 1-2.646 0L30.67 54.498a1.872 1.872 0 0 0-2.646 0ZM49.19 6.875a1.87 1.87 0 0 1 2.647 0c4.489 4.489 5.877 8.98 6.178 12.342L27.67 49.56c.349-1.527 1.181-7.463-4.938-13.582a1.87 1.87 0 0 1 0-2.646Zm-7.936-2.646a1.87 1.87 0 0 1 2.645 0l1.323 1.323-25.134 25.134a5.619 5.619 0 0 0 0 7.938c4.005 4.005 4.2 7.696 4.043 9.335L12.15 35.978a1.87 1.87 0 0 1 0-2.646Z"
                   fill="#F04667"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 />
               </svg>
               <div className="flex flex-col lg:h-48 bg-[#1D204B] hover:bg-[#6F76C8] cursor-pointer text-white mt-8 py-5 px-7 rounded-xl z-10">
