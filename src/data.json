@@ -1,6 +1,6 @@
 [
   {
-    "title": "Work",
+    "title": "work",
     "timeframes": {
       "daily": {
         "current": 5,
@@ -17,7 +17,7 @@
     }
   },
   {
-    "title": "Play",
+    "title": "play",
     "timeframes": {
       "daily": {
         "current": 1,

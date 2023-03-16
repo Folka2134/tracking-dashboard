@@ -1,43 +1,68 @@
 import { useState } from "react";
 
-import data from "./data.json";
+import allData from "./data.json";
 
 import "./App.css";
 import avatar from "./assets/image-jeremy.png";
 
+import workLogo from "./assets/icon-work.svg";
+import playLogo from "./assets/icon-play.svg";
+import studyLogo from "./assets/icon-study.svg";
+import exerciseLogo from "./assets/icon-exercise.svg";
+import socialLogo from "./assets/icon-social.svg";
+import selfcareLogo from "./assets/icon-self-care.svg";
+
 function App() {
-  const [timeFrame, setTimeFrame] = useState("monthly");
+  const [timeFrame, setTimeFrame] = useState();
+  const [dataState, setData] = useState(allData);
+  const data = [...dataState];
 
-  console.log(data[0].timeframes.weekly.current);
+  const logos = [
+    workLogo,
+    playLogo,
+    studyLogo,
+    exerciseLogo,
+    socialLogo,
+    selfcareLogo,
+  ];
 
-  function renderCurrent(timeFrame) {
+  const cardColors = [
+    "FF8B64",
+    "56C2E6",
+    "FF5E7D",
+    "4BCF83",
+    "7235D1",
+    "F1C75B",
+  ];
+
+  function renderCurrent(timeFrame, objectId) {
     switch (timeFrame) {
       case "daily":
-        return data[0].timeframes.daily.current;
+        return data[objectId].timeframes.daily.current;
       case "weekly":
-        return data[0].timeframes.weekly.current;
+        return data[objectId].timeframes.weekly.current;
       case "monthly":
-        return data[0].timeframes.monthly.current;
+        return data[objectId].timeframes.monthly.current;
       default:
-        return data[0].timeframes.weekly.current;
+        return data[objectId].timeframes.weekly.current;
     }
   }
-  function renderPrevious(timeFrame) {
+  function renderPrevious(timeFrame, objectId) {
     switch (timeFrame) {
       case "daily":
-        return data[0].timeframes.daily.previous;
+        return data[objectId].timeframes.daily.previous;
       case "weekly":
-        return data[0].timeframes.weekly.previous;
+        return data[objectId].timeframes.weekly.previous;
       case "monthly":
-        return data[0].timeframes.monthly.previous;
+        return data[objectId].timeframes.monthly.previous;
       default:
-        return data[0].timeframes.weekly.previous;
+        return data[objectId].timeframes.weekly.previous;
     }
   }
 
   return (
     <div className="App bg-[#0D1323]">
-      <div className="h-full lg:h-screen w-full flex justify-center items-center">
+      <div className="min-h-screen lg:h-screen w-full flex justify-center items-center">
         <div className="flex flex-col lg:flex-row lg:justify-center  my-24">
           <div className="flex flex-col w-64 bg-[#1D204B] rounded-xl mb-4 lg:mb-0">
             <div className="flex flex-row lg:flex-col justify-evenly bg-[#5746EA] p-4 lg:p-8 rounded-xl lg:h-80">
@@ -57,53 +82,72 @@ function App() {
             </div>
             <div className="flex flex-row lg:flex-col justify-evenly bg-[#1D204B] lg:h-40 p-5 px-7 text-[#545992] font-semibold rounded-xl">
               <p>
-                <span className="hover:text-white cursor-pointer">Daily</span>
+                <span
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => setTimeFrame("daily")}
+                >
+                  Daily
+                </span>
               </p>
               <p>
-                <span className="hover:text-white cursor-pointer">Weekly</span>
+                <span
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => setTimeFrame("weekly")}
+                >
+                  Weekly
+                </span>
               </p>
               <p>
-                <span className="hover:text-white cursor-pointer">Monthly</span>
+                <span
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => setTimeFrame("monthly")}
+                >
+                  Monthly
+                </span>
               </p>
             </div>
           </div>
           {/* CARDS */}
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-2 lg:ml-10 rounded-xl">
-            <div className="flex flex-col w-64 justify-end bg-[#FF8B64] rounded-t-xl rounded-b-xl relative">
-              <svg
-                className="absolute top-0 right-5 z-0"
-                width="79"
-                height="79"
-                xmlns="http://www.w3.org/2000/svg"
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3  lg:ml-10 rounded-xl">
+            {data.map((object, objectId) => (
+              <div
+                key={objectId}
+                className={`flex flex-col w-64 justify-end bg-[#${cardColors[objectId]}] rounded-t-xl rounded-b-xl relative`}
               >
-                <path
-                  d="m18.687 10.43 15.464 30.906c.31.682.743 1.322 1.3 1.88.558.557 1.198.99 1.714 1.217L68.237 59.98 52.484 75.732a8.025 8.025 0 0 1-11.355 0L2.934 37.538a8.025 8.025 0 0 1 0-11.356L18.687 10.43Zm19.345-7.99 10.839 10.838 2.065-2.064a5.845 5.845 0 0 1 8.258 0l8.258 8.259a5.845 5.845 0 0 1 0 8.258l-2.064 2.064 10.839 10.84a8.025 8.025 0 0 1 0 11.355l-4.728 4.728L39.126 40.53a1.963 1.963 0 0 1-.578-.413 1.963 1.963 0 0 1-.413-.578L21.95 7.168l4.728-4.728a8.025 8.025 0 0 1 11.355 0Zm17.033 12.903-2.064 2.065 8.258 8.258 2.064-2.064-8.258-8.259Z"
-                  fill="#D96C47"
-                  fillRule="nonzero"
+                <img
+                  className="absolute top-0 right-5 z-0"
+                  width="79"
+                  height="79"
+                  src={logos[objectId]}
+                  alt=""
                 />
-              </svg>
-              <div className="flex flex-col lg:h-48 bg-[#1D204B] hover:bg-[#6F76C8] text-white mt-8 py-5 px-7 rounded-xl z-10 cursor-pointer">
-                <div className="flex justify-between items-center basis-1/4 mb-5">
-                  <h4 className="font-semibold">{data[0].title}</h4>
-                  <svg width="21" height="5" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
-                      fill="#BBC0FF"
-                      fillRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div className="flex flex-row lg:flex-col justify-between lg:justify-start items-center lg:items-start">
-                  <h1 className="text-xl lg:text-5xl lg:mb-3">
-                    {renderCurrent(timeFrame)}hrs
-                  </h1>
-                  <p className="text-sm text-gray-300">
-                    Last Week - {renderPrevious(timeFrame)}hrs
-                  </p>
+                <div className="flex flex-col lg:h-48 bg-[#1D204B] hover:bg-[#6F76C8] text-white mt-8 py-5 px-7 rounded-xl z-10 cursor-pointer">
+                  <div className="flex justify-between items-center basis-1/4 mb-5">
+                    <h4 className="font-semibold">{object.title}</h4>
+                    <svg
+                      width="21"
+                      height="5"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
+                        fill="#BBC0FF"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex flex-row lg:flex-col justify-between lg:justify-start items-center lg:items-start">
+                    <h1 className="text-xl lg:text-5xl lg:mb-3">
+                      {renderCurrent(timeFrame, objectId)}
+                    </h1>
+                    <p className="text-sm text-gray-300">
+                      Last Week - {renderPrevious(timeFrame, objectId)}hrs
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col w-64 justify-end bg-[#56C2E6] rounded-t-xl rounded-b-2xl relative">
+            ))}
+            {/* <div className="flex flex-col w-64 justify-end bg-[#56C2E6] rounded-t-xl rounded-b-2xl relative">
               <svg
                 className="absolute top-0 right-5 z-0"
                 width="79"
@@ -252,7 +296,7 @@ function App() {
                   <p className="text-sm text-gray-300">Last Week - 36hrs</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
